@@ -8,7 +8,7 @@ rootpw vagrant
 firewall --disabled
 authconfig --enableshadow --passalgo=sha512
 selinux --disabled
-timezone --utc America/Chicago
+timezone --utc America/New_York
 zerombr
 clearpart --all
 part /boot --fstype=ext4 --size=512
@@ -29,7 +29,7 @@ cp /etc/resolv.conf /mnt/sysimage/etc/resolv.conf
 %end
 
 %post
-/usr/bin/yum -y install sudo gcc "kernel-devel-$(uname -r)" make perl rubygems ruby-devel
+/usr/bin/yum -y install sudo gcc "kernel-devel-$(uname -r)" make perl rubygems ruby-devel wget git
 /bin/cat << EOF > /etc/sudoers.d/wheel
 Defaults:%wheel env_keep += "SSH_AUTH_SOCK"
 Defaults:%wheel !requiretty
